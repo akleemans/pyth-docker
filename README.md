@@ -1,22 +1,56 @@
-Pyth
-====
+pyth-docker
+===========
 
-Pyth, an extremely concise language.
+**Try the updated, hosted version here**:
+[https://pyth-docker.azurewebsites.net/](https://pyth-docker.azurewebsites.net/)
 
-[Try it here.](https://pyth.herokuapp.com/)
+See the docs: [https://pyth.readthedocs.org/en/latest/](https://pyth.readthedocs.org/en/latest/)
 
-[Tutorial here.](https://pyth.readthedocs.org/en/latest/)
+Pyth is an extremely concise language by isaacg1.
+This is a fork of [isaacg1/pyth](https://github.com/isaacg1/pyth) with the goal of providing a docker image running with
+an up-to-date Python version (currently 3.11) and dependencies.
 
-----
+## Examples
 
-## Recent changes:
+Some example programs to run:
 
-### 11/26/17
+* Hello world: `"Hello, world!`
+* Add two numbers: `+1 1`
+* Add two inputs: `+Qvw`
+* Check if number is prime: `}QPQ`
+* Echo input as output: `z`
 
-* `=` and `~` now allow an implicit `Q` if they are not followed by any variables for the rest of the program.
-  * For instance, in the program `mQ=h`, the `=` assigns the result of `h`, which expands to `hQ` to `Q`. Thus, with an input of `2`, the output is `[3, 3, 3]`.
+Useful links:
 
-### 8/20/17
+* [Esolang entry for Pyth](https://esolangs.org/wiki/Pyth)
+* [Tips for golfing in Pyth](https://codegolf.stackexchange.com/questions/40039/tips-for-golfing-in-pyth)
+* [Pyth practice](https://codegolf.stackexchange.com/questions/67958/pyth-practice-2)
+* [Simple golfing problems](https://gist.github.com/m-ender/61e602f78a247be64ee327a7d119844f)
+* [Code golf challenges](https://code.golf/)
+* [Code golf challenges on codidact](https://codegolf.codidact.com/)
+* [Codeforces problemset](https://codeforces.com/problemset)
 
-* `J` and `K` now define assignment expressions until an assignment expression is complete, since the associated variables are not defined until that point. 
-  * For instance, in the program `J+J4*J3J`, the first `J` defines an assignment expression. `+` is part of that expression, `J` is part of that expression and defines another assignment expression. That inner assignment gives `J` the value `4`. Now, J is defined, and so it is treated as a variable in the expression `*J3`. Then, the final `J` is an expression of its own, and prints out `J`'s new value at this point, 16. 
+## Run the docker image
+
+You can use the pre-built image directly: `docker run -d --name pyth-docker -p 8000:8000 adrianus/pyth-docker`
+
+### Build image
+
+- Build image: `docker build --tag pyth-docker .`
+- Run: `docker run -d --name pyth-docker -p 8000:8000 pyth-docker`
+
+After that, open [localhost:8000](http://localhost:8000) in your browser to access it.
+
+## Run locally
+
+You can use Pyth directly from the command line: `python3 pyth.py -c "+1 1"`
+
+You can also run the server + UI directly using Python/Flask, without gunicorn.
+
+- First, install the requirements: `pip3 install -r requirements.txt`
+- Start it: `python3 server.py`
+- Then, visit [localhost:5000](http://localhost:5000)
+
+### Run tests
+
+To run the test suite: `python3 test.py`

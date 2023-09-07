@@ -3,7 +3,6 @@ import cmath
 import collections.abc
 import copy
 import datetime
-import fractions
 import functools
 import hashlib
 import itertools
@@ -738,7 +737,7 @@ def base_10(a, b):
     if is_seq(a) and is_num(b):
         return to_base_ten(a, b)
     if isinstance(a, int) and isinstance(b, int):
-        return fractions.gcd(a, b)
+        return math.gcd(a, b)
     return unknown_types(base_10, "i", a, b)
 environment['base_10'] = base_10
 
